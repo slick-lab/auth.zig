@@ -21,7 +21,7 @@ pub fn hash(password: []const u8, allocator: std.mem.Allocator, io: std.Io, opti
    return try allocator.dupe(u8, hash);
 }
 
-pub fn verify(hash: []const u8, password: []const u8, alloc: std.mem.Allocator, io: std.Io) !Bool {
+pub fn verify(hash: []const u8, password: []const u8, alloc: std.mem.Allocator, io: std.Io) !bool {
   std.crypto.pwhash.argon2.strVerify(hash, password, .{ .allocator = alloc }, io) catch |err| {
     if (err == error.AuthenticationFailed) {
       return false;
