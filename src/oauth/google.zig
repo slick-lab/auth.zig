@@ -193,7 +193,7 @@ pub const GoogleOAuth = struct {
 fn generateCodeVerifier(allocator: std.mem.Allocator) ![]u8 {
     const verifier_len = 64;
     var verifier = try allocator.alloc(u8, verifier_len);
-    // Fill with random bytes (you'd need a cryptographically secure RNG).
+    // Fill with random bytes (we need a cryptographically secure RNG).
     std.crypto.random.bytes(verifier);
     // Ensure it's URL-safe.
     for (verifier) |*c| {
